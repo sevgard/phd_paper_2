@@ -9,11 +9,11 @@ from matplotlib import pyplot as plt
 
 '''Parameters of the model'''
 # Number of periods
-T = 10
+T = 20
 
 # General ability
 theta_l = 2
-theta_h = 3
+theta_h = 4
 prob_theta = 0.5
 
 # Firm-specific match
@@ -97,11 +97,12 @@ data = {
     'p_i_t': [],
     'q_i_t': [],
     'Profit_i_t': [],
-    'E[Profit_i_t]': []
+    'E[Profit_i_t]': [],
+    'empl_status': []
 }
 df = pd.DataFrame(data)
 
-for n in range(200):
+for n in range(500):
     # 0. Define the list for all varialbes we need:
     X_i_T = [0]         # general ability signal
     Z_i_f_T = [0]       # firm-specific match signal
@@ -135,9 +136,11 @@ for n in range(200):
     # Iterate over every period i for each worker n:
     prob_i_t = prob_theta
     qrob_i_t = prob_mu
+    empl_status = "stayed"
     for i in range(T):
         prob_i_t1 = prob_i_t
         qrob_i_t1 = qrob_i_t
+        empl_status1 = empl_status
         x_i_t = theta_i + E[i]      # general ability signal
         X_i_T.append(x_i_t)
         z_i_f_t = mu_i + N[i]       # firm-specific match signal
@@ -156,8 +159,15 @@ for n in range(200):
         PI_i_T.append(profit_i_f_t)
         eprofit_i_f_t = exp_y_i_t - wage_i_t    # expected profit in period t
         EPI_i_T.append(eprofit_i_f_t)
+        if empl_status1 == 'stayed':
+            if eprofit_i_f_t >= 0:
+                empl_status = 'stayed'
+            else:
+                empl_status = 'fired'
+        else:
+            empl_status = 'left'
         line = [n+1, i+1, theta_i, mu_i, E[i], N[i], x_i_t, z_i_f_t, y_i_f_t, exp_y_i_t,
-                wage_i_t, prob_i_t, qrob_i_t, profit_i_f_t, eprofit_i_f_t]
+                wage_i_t, prob_i_t, qrob_i_t, profit_i_f_t, eprofit_i_f_t, empl_status]
         df.loc[len(df)] = line
 
 print(df)

@@ -1,0 +1,657 @@
+ \documentclass[12pt]{article}
+
+\usepackage{amssymb,amsmath,amsfonts,eurosym,geometry,ulem,graphicx,caption,color,setspace,sectsty,comment,footmisc,caption,pdflscape,subfigure,array,hyperref,enumitem}
+\usepackage[round]{natbib}
+
+\normalem
+
+\onehalfspacing
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}{Proposition}
+\newenvironment{proof}[1][Proof of]{\noindent\textbf{#1} }{\ \rule{0.5em}{0.5em}}
+
+% \newtheorem{hyp}{Hypothesis}
+% \newtheorem{subhyp}{Hypothesis}[hyp]
+% \renewcommand{\thesubhyp}{\thehyp\alph{subhyp}}
+
+% \newcommand{\red}[1]{{\color{red} #1}}
+% \newcommand{\blue}[1]{{\color{blue} #1}}
+
+
+% \newcolumntype{L}[1]{>{\raggedright\let\newline\\arraybackslash\hspace{0pt}}m{#1}}
+% \newcolumntype{C}[1]{>{\centering\let\newline\\arraybackslash\hspace{0pt}}m{#1}}
+% \newcolumntype{R}[1]{>{\raggedleft\let\newline\\arraybackslash\hspace{0pt}}m{#1}}
+
+\geometry{left=1.0in,right=1.0in,top=1.0in,bottom=1.0in}
+\graphicspath{images/}
+
+\begin{document}
+
+\begin{titlepage}
+\title{Employee Referrals under Symmetric Learning}%\thanks{abc}
+\author{Georgii Aleksandrov}%\thanks{abc}
+\date{\today}
+\maketitle
+\begin{abstract}
+\noindent \textit{Abstract here}\\
+\vspace{0in}\\
+\noindent\textbf{Keywords:} employee referrals\\
+\vspace{0in}\\
+%\noindent\textbf{JEL Codes:} key1, key2, key3\\
+
+\bigskip
+\end{abstract}
+\setcounter{page}{0}
+\thispagestyle{empty}
+\end{titlepage}
+\pagebreak \newpage
+
+
+
+
+\doublespacing
+
+
+\section{Introduction} \label{sec:introduction}
+
+Empirical results from the literature show that referrals are a widespread search method for job candidates \citep{holzer1987job, elliott1999social, corcoran1980most} as well as employers \citep{marsden2001social, holzer1987hiring}. However, what is the definition of referrals? In the literature, we can find two different approaches to defining referrals. The first considers referrals from an employer's perspective (employee referrals), and the second explains them from a job seeker's point of view (job referrals). 
+
+Most of the studies considering referrals from an employer's perspective define employee referrals as an internal recruitment method used by an organization to identify potential candidates from their existing employees' social networks. One of the main questions under consideration in this strain of research is how employers can efficiently use information from their current employees to find better job candidates. The core models describing referrals are models with asymmetric information addressing adverse selection problem \citep{rees1966information, saloner1985old, ekinci2016employee}; moral hazard problem \citep{kugler2003employee, pallais2016referential, heath2018firms}; models describing referral effects of homophily and favoritism \citep{montgomery1991social, galenianos2013learning, beaman2012gets}. Another strain of research is devoted to the productivity of informal recruitment methods compared to formal ones \citep{fernandez2000social, holzer1988search}.
+
+The second approach describes job referrals as a job search method used by job candidates to gain information about potential employers and increase the probability of finding a (better) job. Many studies investigating job referrals use matching models with symmetric learning \citep{jovanovic1979job}. Under this approach, the main topics are the impact of the informal job search methods on labor market outcomes \citep{simon1992matchmaker, montgomery1992job, elliott1999social}, the variation of referrals’ usage across different demographic groups \citep{lalanne2016old, calvo2004effects, holzer1986informal}, and the variation across different network attributes \citep{lester2021heterogeneous, kuzubas2009endogenous, granovetter1995coase, montgomery1994weak}. 
+
+Most empirical studies show that candidates using referrals differ from those attracted by formal hiring methods. They are more likely to be hired \citep{burks2015value} and receive a higher initial salary \citep{galenianos2013learning}; the wage advantage of referred workers disappears over time \citep{dustmann2016referral}; referred workers have lower turnover \citep{heath2018firms}.
+
+However, the empirical literature on referrals often obtains mixed or contradictory results. Observed positive effects from referrals in one industry do not necessarily lead to the same effects in the other \citep{burks2015value}. The same appears true for different social groups \citep{calvo2004effects}. Reasons for mixed empirical results include the complexity and heterogeneity of analyzed data and different approaches to identifying and estimating referral effects. Job referrals hypotheses' testing usually employs aggregated datasets (National Longitudinal Surveys, Labor Force Surveys). These datasets' central unit of analysis is a job seeker and her characteristics, such as wage dynamics, tenure, et cetera. On the other hand, studies on employee referrals mostly use microeconomic data at the firm's level. The central unit of employee referrals' analysis is a job seeker as well, especially those of her attributes as tenure and (various proxies for) productivity and effort.
+
+Surprisingly, under both approaches, a firm-worker match is usually considered as hiring a job candidate with the "right" or sufficient ability level. Little attention is paid to the concept of the job and "fitting" a position to a job candidate's beliefs and expectations. However, it is an essential part of the job-employee matching mechanism. This gap in research on firm-worker matching has both empirical and theoretical reasons. The complexity of the data on job attributes and firm-employee characteristics makes it difficult to find a clear identification strategy. In addition, the theory of (firm- and industry-specific) human capital (Becker, 1962, 1975), on which plenty of the theoretical studies on firm-worker matching rely,  does not bring enough insights into this oppositely directed relationship between a job candidate and a potential employer \footnote{See \cite{lazear2011inside} for a discussion about the job as a concept and the current state of research.}. 
+
+The paper attempts to approach this gap in research by providing a theoretical framework that explains the diversity of empirical results on the efficiency of referrals. Its framework complies with the main empirical results on referrals and generates new hypotheses regarding the relations between referees' and referred workers' attributes.
+
+The model rests on the following assumptions. The first assumption is that referrals have bilateral nature. They include the transfer of information about a job between a current employee and a job seeker (job referral) and the transfer of information about potential job seekers between a current employee and her employer (employee referral). In addition, employee referrals are a subset of job referrals. Indeed, it is hard to imagine that a job seeker would be referred to a potential employer without knowing about it. However, the reversed situation is possible – a current employee can refer a job to her friend without notifying her employer. 
+
+Empirical evidence supports this assumption. According to different studies, employee referrals are less common than job referrals. In particular,  50\% to 80\% of job seekers use referrals to find a job  \citep{lin1981social, elliott1999social} while only 30\% to 50\% of firms use referrals to search for potential employees \citep{neckerman1991hiring, holzer1987hiring}.
+
+Most of the studies on referrals assume that current employees provide the employer with information about the ability of referred candidates \citep{lester2021heterogeneous, ekinci2016employee, beaman2012gets}. At the same time, most employers rely on screening mechanisms for both referred and non-referred job candidates' current ability. Thus, another assumption I make is that the current employee can provide information not only about the current ability of a job candidate but also about the specific firm-worker match. In other words, the innate ability of the worker and her match with the firm become independent variables. Thus, referring employee’s career path within the firm is a proxy not only for the referred job candidate’s ability but also for her match with the particular firm. Current employees, who survived in the firm (and thus have sufficient tenure and wage growth observed by the firm) provide their employer with information about the expected firm-worker match of referred job candidates. At the same time, the firm does not have such information for non-referred job candidates and treats their probability of being a good match as the average among all employees in the labor market. 
+
+Empirical research showing that referred workers receive higher wages backs up this assumption. Moreover, there is also empirical evidence that referred and non-referred workers often have similar ex-post productivity \citep{brown2016informal}. It may indicate that employers offer higher wages to referred workers, not because of higher current ability but due to other reasons, such as higher expected productivity in the future, expressed in the expected firm-worker match.
+
+The third assumption is about information provided to job candidates. It states that current employees may reveal information about the potential career path within the firm to potential job candidates. Job candidates informed about the career paths of their friends within the firm may, in turn, update their beliefs about the potential match and, thus, their expected wage growth and career path for the referred employer.
+
+The model integrates symmetric learning about the match type and the bilateral signaling of the employee to her friend and current employer. A framework that includes these mechanisms captures several recent empirical findings on referrals and generates new testable hypotheses.
+
+The results of the model are consistent with the evidence of the positive wage effect of employee referrals on referred workers' starting wages  \citep{brown2016informal, dustmann2016referral, galenianos2013learning, montgomery1991social, simon1992matchmaker, corcoran1980most}. The model also shows that the wages of referred and non-referred workers converge with their tenure \citep{galenianos2013learning, dustmann2016referral, simon1992matchmaker, brown2016informal}. Furthermore, it predicts that the turnover of the referred workers is lower than that of non-referred workers \citep{simon1992matchmaker, dustmann2016referral, brown2016informal}.
+
+Moreover, the model differentiates job and employee referrals. In the case of job referrals, the current employee provides a signal only to the friend looking for a job but not to her employer. Under the model's assumptions, job referrals do not result in higher wages and a lower turnover of the job candidates provided with the signal\footnote{Relaxing assumptions of the model can lead to different outcomes and positively affect job candidates' wages and tenure.}. 
+
+However, in the case of employee referrals, the model generates new testable hypotheses about referring employees' tenure effects on wage and turnover of referred workers. Job candidates referred by current employees with longer tenure have higher initial wages and experience less turnover than those referred by current employees with shorter tenure. I.e., current employees with longer career paths can provide more information to the firm about firm-specific matches (and future productivity) of referred candidates and thus increase their initial wages and decrease turnover.
+
+This result helps to understand why referrals are not beneficial for positions with low career opportunities and high job turnover (such as cashiers, movers, and couriers). Most current employees cannot provide helpful information about a firm-specific match for their friends due to the short length of their career paths.  Therefore, the employer does not observe a significant difference between the expected match for referred and non-referred job candidates. Consequently, the firm is reluctant to provide referred job candidates with higher initial wages, which does not incentivize job candidates to use referrals for positions with low career opportunities and high job turnover.
+
+The framework presented in the paper can be used in further analysis of the referrals and generating hypotheses for empirical testing. For instance, introducing the network structure in the framework can potentially help explain controversial results in \cite{lester2021heterogeneous} concerning different effects on employee turnover for referrals from friends and business contacts. Furthermore, the paper addresses the problem of disentangling job and employee referrals. It appears essential to investigate this distinction in more detail to fully understand referral mechanisms and their potential effects on labor market outcomes.
+
+The next section of the paper consists of several subsections. In the first subsection, the setup and assumptions of the model are presented. Then I analyze the model with no referrals to show the dynamics of the labor market participants' beliefs. In the third subsection, I introduce referrals in the model. I analyze results for both job referrals and employee referrals and provide several testable hypotheses. The paper concludes with a discussion.
+
+%However, this prediction may only work for the weak ties (or business contacts) of current employees (see Montgomery, 1992; Granovetter, 1995; Lester et al. 2021). Job candidates having strong ties with current employees (friends and relatives) do not necessarily have similar productivity growth and thus can be a source of adverse selection problem. Disentangling the negative and positive effects of job referrals by senior employees would be another challenging empirical goal in the field of research on referrals.
+
+\section{Model} \label{sec:model}
+This section contains the model of referrals with bilateral signaling. Its setup is close to the models of \cite{waldman1984job} and \cite{gibbons1999theory, gibbons2006enriching}. In particular, the firms' production functions and timings are similar. Furthermore, learning about the specific firm-worker match occurs symmetrically. It also inherits several properties of the model by \cite{ekinci2016employee} in part of interdependence between match evaluations of the referred and referring workers.  The main difference from the models presented in previous studies is in the distinction between the innate ability of the worker $\theta_i$ and the specific firm-worker match $\psi_{if}$. Those current employees connected with job applicants can signal to the firm their probability of being a good match to the job applicants and their connection with them.
+
+\subsection{Setup}
+Let us begin with a simple model where workers are similar in innate ability, and the production function does not incorporate human capital accumulation by workers during their tenure. The main assumptions of the model are as follows:
+
+\begin{enumerate}[label={A}{\arabic*}.]
+	\item Production takes place in firms, and there is free entry into production. Thus all firms in the first period earn non-positive profits when no referrals occur.
+	\item A worker's career lasts for $T\geq 1$ periods. In every period $t$ labor supply is inelastic and fixed at one unit for each worker.
+	\item Both workers and firms are risk neutral and have a discount factor $\delta = 0$.
+	\item Firms can hire and fire workers at no cost, and workers can change firms at no cost. Thus, there is no long-term contracting in the labor market. Another assumption is that firms pay salaries before the output is generated\footnote{Similar to the setup of \cite{gibbons1999theory}.}. 
+	\item All workers have similar innate ability normalized to 1: $\theta_i = 1$ $\forall i$.
+	\item A worker $i$’s match with a firm $f$ is denoted by $\psi_{if}$ and can either be zero or one: $\psi_{if}\in \lbrace0,1\rbrace $.
+	\item All firms in the economy have identical production functions:
+		\begin{equation}\label{eq:prod_fct}
+			y_{ift}=d+c(\psi_{if}+\varepsilon_{ift}),
+		\end{equation}
+where $d,c >0$ are constants known to all labor-market participants and $\varepsilon_{ift}$ is a noise term drawn from a standard normal distribution: $\varepsilon_{ift}\sim \mathcal{N}(0,\,1)$.
+	\item When a worker starts her career in a firm, her specific firm-worker match is unknown to all labor market participants. The probability of the worker being a good match with the firm is identical for all firm-worker pairs and equal to $P(\psi_{if}=1) = \alpha_0>0$ $\forall i,f$. 
+	\item All labor market participants simultaneously learn the realization of the worker's output at the end of each period. 
+	\item Denote a signal the labor market receives about the specific match of the worker $i$ and the firm $f$ in period $t$ as $z_{ift} = \frac{y_{ift}-d}{c} = \psi_{if}+\varepsilon_{ift}$. Let also denote the working history of all signals of the worker $i$ in the firm $f$ up to period $t$ as $Z_{ift} = \lbrace z_{if1},...,z_{ift}\rbrace$.  All market participants provided with this signal update the probability of the match between the worker $i$ and the firm $f$: $\alpha_{ift} = P(\psi_{if}=1 \vert Z_{ift})$. Signal $z_{ift}$ does not affect the probability of the match of the worker i with other firms in the labor market: $P(\psi_{if'}=1 \vert Z_{ift})=\alpha_0$ $\forall f'\neq f$.
+\end{enumerate}	 
+
+\subsection{Analysis of the case with no referrals}
+Applying the assumptions above, we can first analyze the case when no referral occurs. In this case, every worker's probability of being a good match with any firm at the beginning of the first period is equal to $P(\psi_{if}=1) = \alpha_0$. 
+
+At the end of each period, the realization of worker's output is revealed to every market participant. At the beginning of the next period, all labor market participants update their probabilities about specific matches based on signals received in previous periods. Then all firms simultaneously offer every worker a job and bargain with workers to determine the wage based on their evaluation of the specific match probability. The worker accepts the offer from the firm with the highest wage. If several firms offer equal wages, the worker randomly chooses one of them. If the set of firms with identical offers includes the worker's current employer, the worker chooses to stay with her current employer. 
+
+As time passes and market participants observe the worker's output in the firm, her probability of being a good match $P(\psi_{if}=1 \vert Z_{ift}) = \alpha_{ift}$  is gradually updated according to Bayes's theorem. The following lemma states the expression for the updated probability of the worker $i$ being a good match with the firm $f$:
+\begin{lemma}\label{lemma:alpha_it}
+Suppose that at the beginning of the worker $i$'s career, she is known to be a good match with the firm $f$ with probability $\alpha_0$. Then her updated probability of being a good match conditional on her working history in the firm $Z_{ift} = \lbrace z_{if1},...,z_{ift} \rbrace$ is equal to:
+\begin{equation}\label{eq:alpha_it}
+\alpha_{ift} = \frac{\alpha_0}{\alpha_0 + (1-\alpha_0)\Phi_{ift}},
+\end{equation}
+where $\Phi_{ift} = exp\lbrace-\sum_{\tau = 1}^{t} z_{i f \tau}+\frac{t}{2}\rbrace$.
+\end{lemma}
+The probability of being a good match in period $t$, $\alpha_{ift}$, is increasing in the initial probability of being a good match $\alpha_0$ and increasing in the signal $z_{ift}$ given all previous signals fixed. Note that a sufficiently strong signal $z_{ift}$ can influence $\alpha_{ift}$ enough to make it lower than $\alpha_0$ at any period $t$\footnote{The expression for the probability of being a good match in period $t$, $\alpha_{ift}$, is similar to the market belief about the worker being of high ability in \cite{gibbons1999theory}. In their proof of Corollary 3, \cite{gibbons1999theory} show that a sufficiently strong signal can move the market's belief arbitrarily far. Thus, the proof that $z_{ift}$ can influence $\alpha_{ift}$ enough to make it lower than $\alpha_0$ at any period $t$ is omitted here.}.
+
+The assignment and the wage level given the signal $z_{ift}$ can be established in the following way. In every period $t$, each worker $i$ is assigned to the firm that maximizes her expected output $\mathbb{E}[y_{ift}] = d+c\alpha_{i,f,t-1}$ and receives the wage determined by bargaining  with that firm. For simplicity, let us assume that the wage level is set according to the Nash bargaining solution.
+\begin{proposition}\label{prop:equil_no_referrals}
+Suppose that learning about the specific firm-worker match is symmetric and that at the beginning of a worker $i$'s career, she is known to be a good match with the firm $f$ with probability $\alpha_0$. Then the assignment of workers to firms, workers' wages, and firms' profits are given by:
+	\begin{enumerate}[label={\roman*})]
+		\item If $\alpha_{i,f,t-1}\geq \alpha_0$, then the worker $i$ stays in the firm $f$ in period $t$ and earns the wage $w_{ift}=d+\frac{c}{2}(\alpha_{i,f,t-1}+\alpha_0)$. The firm $f$ employing the worker $i$ earns a profit equal to $\pi_{ift} = \frac{c}{2}(\alpha_{i,f,t-1}-\alpha_0)$.
+		\item If $\alpha_{i,f,t-1}< \alpha_0$, then the worker $i$ leaves the firm $f$ in period $t$, accepts the offer of the other firm $f'\neq f$, and earns the wage $w_{ift}=d+c\alpha_0$. Profit for both firms is equal to zero.
+	\end{enumerate}
+\end{proposition}
+
+Proposition \ref{prop:equil_no_referrals} says that the worker's decision to stay or leave the firm, as well as her wage, depends on the probability of being a good match conditional on the working history of the worker\footnote{The probability of being a good match conditional on the working history of the worker is equal to the expected match of the worker conditional on her working history: $P(\psi_{if}=1 \vert Z_{ift})=\mathbb{E}[\psi_{if} \vert Z_{ift}]$.}.
+
+In the case of no referrals, the model generates the following results about the relations between workers' wages and tenure. First, the worker's wage increases in tenure; this result is formally stated in Corollary \ref{cor:wages_tenure_no_ref}.
+
+\begin{corollary}\label{cor:wages_tenure_no_ref}
+Suppose that learning about the specific firm-worker match is symmetric and that at the beginning of a worker $i$'s career, the worker is known to be a good match with the firm $f$ with probability $\alpha_0$. Then the expected wage of the worker $\bar{w}_{ift}$ conditional on her tenure $t$ is increasing in $t$.
+\end{corollary}
+
+An increase in the expected wage of the worker $i$ stated in Corollary  \ref{cor:wages_tenure_no_ref} comes from an increase in the probability that the worker $i$ is a good match for every additional period she stays in that firm. This probability is conditional not on actual realizations of the worker's output but on her decision to stay in each period. This result is in line with empirical findings in the labor-market literature, such as \cite{brown1989wages} and \cite{mccue1996promotions}.
+
+Another result of the model with no referrals is that the probability of worker $i$ leaving the firm $f$ is decreasing with her tenure in that firm. In other words, workers in their early careers tend to leave firms more often than workers with longer tenure in that firm\footnote{For simplicity, the worker cannot retire in the model, so she leaves the firm only if she has a better offer in the labor market.}. This result is also supported by empirical evidence in \cite{mincer1981labor} and formally stated in Corollary \ref{cor:leave_decrease_t}.
+
+\begin{corollary}\label{cor:leave_decrease_t}
+Suppose that learning about the specific firm-worker match is symmetric and that at the beginning of the worker $i$'s career, the worker is known to be a good match with the firm $f$ with probability $\alpha_0$. Then the probability that the worker $i$ will leave the firm in period $t$ provided that she stayed in the firm for $t-1$  periods is decreasing in $t$, i.e.
+$$
+P(\text{i leaves at t+1}\vert \text{i stayed for t})\leq P(\text{i leaves at t}\vert \text{i stayed for t-1}) \text{ }\forall t
+$$
+\end{corollary}
+
+To prove these corollaries, we must first examine the dynamics of the probability of being a good match conditional on the worker's tenure. The following lemma provides the necessary results to prove two corollaries for the case with no referrals and the later results for the case with referrals.
+
+
+\begin{lemma}\label{lemma:main}
+Let $\varepsilon_{i1}, \varepsilon_{i2},\varepsilon_{i3},...$ be a sequence of i.i.d. random variables with $\varepsilon_{it} \sim \mathcal{N}(0,\,1)$. Let also denote the sum of random variables as $S_{it} = \sum_{\tau=1}^{t} \varepsilon_{i\tau}$. Then $X_{it}$ is defined as:
+\begin{equation}\label{eq:X_t}
+X_{it} = \frac{P\left[ \cap_{n=1}^{t}(S_{in}\geq \frac{n}{2}) \right] }
+{P\left[ \cap_{n=1}^{t}(S_{in}\geq -\frac{n}{2}) \right] }
+\end{equation}
+and satisfies the following conditions:
+\begin{enumerate}[label={\roman*})]
+\item $0\leq X_{it} \leq 1$;
+\item $X_{it}$ is decreasing in $t$;
+\item $X_{it} \rightarrow 0$ as $t \rightarrow \infty$.
+\end{enumerate}
+\end{lemma}
+
+The numerator in (\ref{eq:X_t}) denotes the probability that the worker $i$  stays in the firm for $t$ periods conditional on being a bad match with the firm ($\psi_{if}=0$), while the denominator equals the probability of staying for $t$ periods conditional on being a good match ($\psi_{if}=1$). Lemma \ref{lemma:main} says that with every additional period staying in the firm, it becomes more evident for all market participants that the worker $i$ is a good match with the firm $f$. At the same time, every other signal becomes less and less salient for labor market participants.
+
+\subsection{Analysis of the case with referrals}
+
+Let us now introduce in the model the mechanism of referrals. The model distinguishes between job referrals (recommendations of current employees to their friends and acquaintances to apply for the vacant position in the firm) and employee referrals (recommendations of current employees to their employer to hire a particular job candidate from their social network). In the case of job referrals, only the job candidate $i$ receives a signal from the current employee $j$. In the case of employee referrals, it is not only the job candidate $i$ who receives the signal but also the firm $f$. 
+
+The signal the current employee $j$ provides for the other players is her working history up to the time of referral. However, this signal can only change the expected match of the job candidate $i$ if there is an interdependence between the current employee's match, $\psi_{jf}$, and the job candidate's match, $\psi_{if}$. Thus, to analyze the model with the possibility of referrals, one has to make additional assumptions concerning the current employee's signal and the relation of that signal to the expected match of her friend applying for the job.
+
+\begin{enumerate}[label={A}{\arabic*}.]
+\setcounter{enumi}{10}
+\item The signal of the current employee $j$, who works in the firm $f$ for $s$ periods at the moment of referral, is her working history in the firm: $Z_{jfs}=\lbrace z_{jf1},...,z_{jfs}\rbrace$.
+\item Every employee has only one friend entering the labor market such that her match $\psi_{jf}$ is positively correlated with the match of her friend $\psi_{if}$: $cov(\psi_{if},\psi_{jf})=\lambda >0$.
+\end{enumerate}
+
+The covariance $\lambda$ between the current employee's match and of the job candidate's match with the firm $f$ represents the strength of the social tie between them. The higher the $\lambda$ is, the stronger the connection between the job candidate and the current employee. Assumption A12 also says that a job candidate can receive a referral (and be referred) only at the very beginning of her career, i.e., at the first period she enters the labor market\footnote{This assumption can be relaxed later to study the dynamics of workers' tenure with the networking effects of referrals.}. 
+
+The model allows an alternative interpretation of current employees' signals to labor-market participants. In the case of job referrals, the current employee $j$'s signal to her friend entering the labor market is her working experience in the firm $f$ up to the moment of referral: $Z_{ifs}$. In the case of employee referrals, the signal the current employee provides to the firm is the strength of her social tie $\lambda$ with the referred job applicant. This interpretation can be more intuitive given that the firm (as well as  other labor-market participants) observes the working history of the current employee up to the present moment.
+
+The timing of the case with referrals is similar to that of the case with no referrals. At the end of every period, the realization of the current employees' output is revealed. At the beginning of the next period, current employees and firms update their beliefs about the probability of being good matches. Firms offer every worker (who remained in the labor market for at least one period) contracts and bargain the wage level based on their evaluation of the specific match probability. The worker accepts the offer from the current employer if it offers a wage higher or equal to the wage the other firms in the labor market offer. If the employee accepts the current employer's offer, she can refer one job candidate entering the labor market\footnote{In the later sections of the paper, we will analyze two cases: when the current employee makes a job referral and when she makes an employee referral.}. In the case of referral, those labor market participants who receive signals from the current employees update their probabilities of being good matches conditional on these signals. After updating their beliefs, firms and job candidates can renegotiate the wage levels. When renegotiations are complete, job candidates decide which firm's offer to accept.
+
+\subsubsection{Job referrals}
+First, consider the case with job referrals where only the job candidate $i$ receives the signal $Z_{jfs}$ from the current employee $j$. In this case, the initial job candidate's evaluation of the specific firm-worker match between her and the firm $f$ is denoted as $\alpha_{i0}^{js}=P(\psi_{if}=1\vert Z_{jfs})$ and equal to\footnote{Let us omit the subscript and superscript f denoting the firm when it does not cause confusion to simplify notation in the rest of the paper.}:
+\begin{equation}\label{eq:alpha_i0_js}
+\alpha_{i0}^{js}= \alpha_0+ \lambda \frac{1-\Phi_{jfs}}{\alpha_0+(1-\alpha_0 ) \Phi_{jfs}}, 
+\end{equation}
+where  $\Phi_{jfs} = exp\lbrace-\sum_{\tau = 1}^{s} z_{j \tau f}+\frac{s}{2}\rbrace$. The expected specific match for the candidate obtaining a job referral is higher than her expected match with other firms because the  probability of the worker $j$ being a good match with the firm $f$ is higher than $\alpha_0$, i.e., $\alpha_{i0}^{js}\geq \alpha_0,\text{ } \forall i\neq j,s>0.$ Otherwise, she would not choose to stay in the firm $f$ and would accept an offer from the other firm in the labor market. 
+
+Denote the updated probability of being a good match for the job candidate $i$ in period $t$, given that she received a job referral from the current employee $j$ with a working history $Z_{jfs}$ as $\alpha_{i,t}^{j,s+t}=P(\psi_{if}=1\vert Z_{i,f,t},Z_{j,f,t+s})$. Note that the working history of the current employee $j$ up to time $s$ satisfies the following condition: for all periods in her working history, $s'\leq s$, the expected specific firm-worker match is higher than the initially expected match, i.e., $\alpha_{jfs'}\geq \alpha_0$. Using (\ref{eq:alpha_it}), we can express this condition as: 
+\begin{equation}\label{eq:cond_post_referral}
+\sum_{\tau = 1}^{s'} z_{jf\tau} \geq \frac{s'}{2}
+\end{equation} 
+
+However, for the time interval $\lbrace s+1,s+2,…,s+t \rbrace$ condition (\ref{eq:cond_post_referral}) does not necessarily hold. I.e., at some point in time, $s''\in [s+1,t+s]$, the current employee $j$’s expected match $\alpha_{js''}$ could become lower than $\alpha_0$. In this case the employee $j$ leaves the firm in period $s''$ and her working history stops with the signal $z_{jfs''}: Z_{j,f,s+t}=\lbrace z_{j,f,1},...,z_{j,f,s},...,z_{j,f,s''}\rbrace$. Denote the updated probability of being a good match for the job candidate $i$ in period $t$ given that she received a job referral from the current employee $j$ with the working history $Z_{jfs}$ as $\alpha_{i,t}^{j,s+t}=P(\psi_{if}=1\vert Z_{i,f,t},Z_{j,f,t+s})$. Then it is equal to:
+\begin{equation}\label{eq:alpha_it_js+t}
+\alpha_{i,t}^{j,s+t}=  \frac{\alpha_{i,0}^{j,s+t}}{\alpha_{i,0}^{j,s+t}+(1-\alpha_{i,0}^{j,s+t}) \Phi_{ift}}
+\end{equation}
+
+Despite the additional information about the match available for the job candidate $i$, her wage offer $w_{ift}$ does not change in the case of job referrals. It appears that the firm $f$'s evaluation of the match does not incorporate the information from the worker $j$’s history $Z_{j,f,s+t}$, as the firm does not receive any signal. The fact that the firm does not receive a signal from the worker $j$, together with Assumption A3, that workers and firms have a zero discount rate, leads to equal wages and tenures of job candidates with and without job referrals. Thus, the equilibrium of the case with job referrals is similar to that described in Proposition \ref{prop:equil_no_referrals}\footnote{Relaxing Assumption A3 and allowing employees to have a discount factor different from zero will increase the tenure of workers with job referrals. It also influences wage bargaining outcomes.}.
+
+\subsubsection{Employee referrals}
+In the case of employee referrals, the current employee $j$ signals her history not only to the job candidate $i$ but also to the firm $f$. Therefore, the firm's probability of the job candidate $i$ being a good match is similar to the job candidate's evaluation of her match and equal to $\alpha_{i,t}^{j,s+t}$ at period $t$. These updated beliefs of the firm affect the expected output and, consequently, the wage of the job candidate $i$ in period $t$, causing the change in the equilibrium.
+\begin{proposition}\label{prop:equil_emp_referrals}
+Suppose that learning about the specific firm-worker match is symmetric and that at the beginning of the worker $i$’s career, she and the firm $f$ receive a signal from the current employee $j$ with a working history $Z_{jfs}$. Then the job assignments and wages in equilibrium are given by:
+\begin{enumerate}[label={\roman*})]
+		\item If $\alpha_{i,t-1}^{j,s+t-1}\geq \alpha_0$, then the worker $i$ stays in the firm $f$ in period $t$ and earns the wage $w_{it}=d+\frac{c}{2}(\alpha_{i,t-1}^{j,s+t-1}+\alpha_{0})$. The firm $f$ employing the worker $i$ earns a profit equal to $\pi_{ift} = \frac{c}{2}(\alpha_{i,t-1}^{j,s+t-1}-\alpha_{0})$.
+		\item If $\alpha_{i,t-1}^{j,s+t-1} < \alpha_0$, then the worker $i$ leaves the firm $f$ in period $t$, accepts the offer of the other firm $f'\neq f$, and earns the wage $w_{it}=d+c\alpha_0$. Profit for both firms is equal to zero.
+\end{enumerate}
+\end{proposition}
+
+Proposition \ref{prop:equil_emp_referrals} says that in the case of employee referrals, wages incorporate not only the working history of the worker $i$ but also the output history of her referring friend $j$. Note that different realizations of the worker $j$’s output can increase and decrease the evaluation of specific match probability between the worker $i$ and the firm $f$. For example, when the worker $j$ leaves the firm in period $s'' \in [s+1,s+t]$ after the referral occurred, her expected match $\alpha_{j,s''}$ is lower than $\alpha_0$. In this case, the working history of the worker $j$ negatively affects the beliefs of the firm $f$ and the worker $i$ about their specific match $\psi_{if}$. However, it is easy to see that at the moment of the referral, the initial wage of the referred worker $i$ will be higher than or equal to the wage of the non-referred workers from the labor market\footnote{The initial wage of the referred worker is higher than the initial wage of the non-referred worker because $\alpha_{i0}^{js} \geq \alpha_0$. This inequality follows from (\ref{eq:alpha_i0_js}) and (\ref{eq:cond_post_referral}).}.
+
+The model also generates several claims about referred workers' expected wages and tenure. These claims consider the worker's expected performance conditional on her decision to stay in the firm for every period. Using these expected performance evaluations, the model delivers results confirmed in recent empirical research and produces new testable hypotheses.  
+
+\begin{corollary}\label{cor:emp_ref_wage_converge}
+Suppose that learning about the specific firm-worker match is symmetric and that at the beginning of the worker $i$’s career, the worker i and the firm receive a signal from the current employee $j$ with tenure $s$. Then the expected wage of the referred worker $\bar{w}_{it}$ conditional on her staying in the firm for $t-1$ periods is higher than or equal to the expected wage of the non-referred worker $\bar{w}_{i't}$ and converges to it over time, i.e.:
+\begin{enumerate}[label={\roman*})]
+\item $\bar{w}_{it} \geq  \bar{w}_{it}$ $\forall t$;
+\item $\bar{w}_{it} -  \bar{w}_{i't} \rightarrow 0$ as $t \rightarrow \infty$,
+\end{enumerate}
+where $\bar{w}_{it} = \mathbb{E}[w_{it}\vert \cap_{n=1}^{s}\sum_{\tau = 1}^{n}z_{jf\tau}\geq \frac{n}{2}, \cap_{n=1}^{t-1} (\sum_{\tau = 1}^{n} z_{if\tau}\geq \frac{n}{2})]$ is the expected wage of the referred  worker $w_{it}$ conditional on her staying in the firm for $t-1$ periods.
+\end{corollary}
+
+Corollary \ref{cor:emp_ref_wage_converge} establishes relationships between the tenure of the referred and non-referred workers and their wage characteristics. The first part of Corollary \ref{cor:emp_ref_wage_converge} says that the expected wage of the referred worker is higher than the expected wage of the non-referred worker with similar tenure in the firm. Note that the expected wage does not incorporate realizations of the worker's history but only her tenure (i.e., number of periods stayed) in the firm. Another crucial remark is about the tenure of the referring employee. As was mentioned above, the referring employee might not stay in the firm after making the referral. So the expected wage of the referred worker incorporates only the information about the current employee's tenure until the moment of referral and does not impose any restrictions on her further performance and tenure.
+
+The second part of Corollary \ref{cor:emp_ref_wage_converge} shows that the expected wage of referred and non-referred workers converge over time. In other words, the wage advantage of the referred workers vanishes with their tenure. It happens because of two reasons. First, the signal of the worker $i$ herself is stronger than the signal of the referring employee. Second, every other output reveals less information than the previous one, so the more the worker stays in the firm, the higher her probability of being a good match. I. e., her probability of being a good match converges to 1 as her tenure in the firm grows. Therefore, the longer workers stay in the firm, the higher the probability of being a good match for referred and non-referred workers.
+
+Corollary \ref{cor:emp_ref_tenure_worker} adds results on expected wages of referred and non-referred workers with relationships between the probability of staying in the firm of referred and non-referred workers depending on their tenure. It claims the probability of staying in the firm in period $t$ for referred workers is higher than for non-referred workers. The second part shows that the difference between probabilities diminishes over time.
+
+\begin{corollary}\label{cor:emp_ref_tenure_worker}
+Suppose that learning about the specific firm-worker match is symmetric and that at the beginning of the worker $i$’s career, the worker i and the firm $f$ receive a signal from the current employee $j$ with tenure $s$. Then the probability for the referred worker $i$ to stay in the firm $f$ in period $t$ is higher than that for the non-referred worker $i$ to stay in the firm $f$ in period $t$ and converges to it over time, i.e.:
+\begin{enumerate}[label={\roman*})]
+\item $P_{it} \geq P_{i't}$ $\forall t$,
+\item $P_{it} - P_{i't} \rightarrow 0$ as $t \rightarrow \infty$,
+\end{enumerate}
+where $P_{it} = P[\sum_{\tau = 1}^{t} z_{if\tau}\geq \frac{t}{2} \vert \cap_{n=1}^{t-1} (\sum_{\tau = 1}^{n} z_{if\tau}\geq \frac{n}{2}),\cap_{n=1}^{s} (\sum_{\tau = 1}^{n} z_{jf\tau}\geq \frac{n}{2})]$ is the probability of the worker $i$ to stay in the firm in period $t$ conditional on her staying in the firm for $t-1$ periods.
+\end{corollary}
+
+Corollaries \ref{cor:emp_ref_wage_converge} and \ref{cor:emp_ref_tenure_worker} show that the worker's probability of staying in the firm and her expected wage depend on the worker's probability of being a good match. In turn, this probability increases in the initial probability of being a good match and in the worker's tenure.  Results stated in both corollaries find support in the empirical literature – for instance, \cite{brown2016informal} discuss both of these claims. Empirical findings presented in \cite{montgomery1991social}, \cite{simon1992matchmaker}, \cite{dustmann2016referral}, and other studies are in line with the predictions of Corollaries \ref{cor:emp_ref_wage_converge} and \ref{cor:emp_ref_tenure_worker}.
+
+However, the hypotheses described in the following two corollaries have not yet appeared in the research on referrals. Corollary \ref{cor:emp_ref_wage_employee} and Corollary \ref{cor:emp_ref_tenure_referee} describe relationships between the tenure of referring employees at the moment of referral and the wages and tenures of their friends.
+
+\begin{corollary}\label{cor:emp_ref_wage_employee}
+Suppose that learning about the specific firm-worker match is symmetric and that at the beginning of the worker $i$’s career, the worker $i$ and the firm $f$ receive a signal from the current employee $j$ with tenure $s$. Then the expected wage of the referred worker $\bar{w}_{it}$ is increasing in the current employee's tenure $s$ at the moment of referral.
+\end{corollary}
+
+Corollary \ref{cor:emp_ref_wage_employee} establishes a crucial result. It shows that the longer tenure of the referring employee is, the higher the wage of the referred worker. In other words, it does matter who is referring a particular job candidate. The longer the referring employee stays in the firm, the higher her probability of being a good match. Thus, the higher the probability of the referred worker being a good match. In turn, the probability of the referred worker being a good match pushes her expected wage higher. Corollary \ref{cor:emp_ref_tenure_referee} states similar results for the referred worker's tenure. 
+
+\begin{corollary}\label{cor:emp_ref_tenure_referee}
+Suppose that learning about the specific firm-worker match is symmetric and that at the beginning of a worker $i$'s career, the worker $i$ and the firm $f$ receive a signal from the current employee $j$ with tenure $s$. Then the probability of the referred worker $i$ to stay in the firm $f$ up to period $t$ is increasing in the current employee's tenure $s$ at the moment of referral.
+\end{corollary}
+
+\section{Conclusion} \label{sec:conclusion}
+
+The current paper is devoted to the concept of referrals in hiring. Despite many empirical and theoretical studies on referrals, it remains unclear what referrals exactly do. This ambiguity in referrals' underlying mechanisms can be traced in empirical research with mixed results on referral effects and theoretical studies approaching referrals from different perspectives. However, most studies on referrals consider a good match between the firm and the job candidate as an ability level of the job candidate sufficient for the employer. This paper attempts to explain referrals' underlying mechanisms from a job seeker's and employer's perspectives. The theoretical model presented in this paper helps to differentiate between the effects of job and employee referrals and identify conditions under which referrals are beneficial for both firms and job seekers. It explains the main empirical findings on referrals and provides new insights into the relationship between the tenure of the referring employees and referred workers. 
+
+There are several ways to develop this study further. First, introducing discount factors for workers and firms would help to study the effects of job referrals in depth. A non-zero discount factor will not only amend the expected output from the point of view of the job candidate but also change the equilibrium in the wage bargaining game.
+
+Another possible avenue for further research is to lessen restrictions on the number of referrals the job candidate can get and allow workers to use referral mechanisms while employed. It will increase the outside options for the workers (especially with an extensive network of business contacts). Pursuing these ideas may help explain the recent empirical results of \cite{lester2021heterogeneous} and other studies on social networks in referrals.
+
+The third direction of research is to look at the dynamics of the labor-market participants' beliefs in the presence of specific human capital and the variation in innate ability levels of the workers $\theta_i$. The assumption that current employees and job candidates are similar not only in the probability of being a good match with the employer but also in their innate ability will bestow output signals of workers and current employees with additional information. This information makes output signals valuable not only for the employer and the worker but also for other labor-market participants trying to acquire candidates with high innate ability levels.
+
+\singlespacing
+\setlength\bibsep{0pt}
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+
+
+\clearpage
+
+\onehalfspacing
+
+% \section*{Tables} \label{sec:tab}
+% \addcontentsline{toc}{section}{Tables}
+
+
+
+% \clearpage
+
+% \section*{Figures} \label{sec:fig}
+% \addcontentsline{toc}{section}{Figures}
+
+%\begin{figure}[hp]
+%  \centering
+%  \includegraphics[width=.6\textwidth]{../fig/placeholder.pdf}
+%  \caption{Placeholder}
+%  \label{fig:placeholder}
+%\end{figure}
+
+
+
+
+\clearpage
+
+\section*{Appendix} \label{sec:appendixa}
+\addcontentsline{toc}{section}{Appendix}
+\begin{proof}
+\textbf{Lemma \ref{lemma:alpha_it}.}\\
+According to Bayes' theorem, $\alpha_{ift} = P(\psi_{if}=1\vert Z_{ift})$ is equal to:
+\begin{equation}\label{eq:lemma_alpha_it_proof_1}
+P(\psi_{if}=1\vert Z_{ift})=\frac{\alpha_{i,f,t-1}P(z_{ift} \vert \psi_{if}=1, Z_{i,f,t-1})}{\alpha_{i,f,t-1}P(z_{ift} \vert \psi_{if}=1, Z_{i,f,t-1})+(1-\alpha_{i,f,t-1})P(z_{ift} \vert \psi_{if}=0, Z_{i,f,t-1})}
+\end{equation}
+Note that $P(z_{ift} \vert \psi_{if}=1, Z_{i,f,t-1})=h(z_{ift}-1)$, where $h(\cdot)$ is the density of $\varepsilon_{ift}$, normal with mean 0 and variance 1. Thus, we can rewrite (\ref{eq:lemma_alpha_it_proof_1}) as follows:
+\begin{equation}\label{eq:lemma_alpha_it_proof_2}
+\alpha_{ift} = \frac{\alpha_{i,f,t-1}}{\alpha_{i,f,t-1} + (1-\alpha_{i,f,t-1})\phi_{it}},
+\end{equation}
+where $\phi_{it} = \frac{h(z_{ift})}{h(z_{ift}-1)} = exp\lbrace -z_{ift}+\frac{1}{2} \rbrace$. Using expression in (\ref{eq:lemma_alpha_it_proof_2}), we can rewrite $\alpha_{ift}$ in terms of $\alpha_0$ in the following way:
+\begin{equation}\label{eq:lemma_alpha_it_proof_3}
+\alpha_{ift} = \frac{\alpha_{0}}{\alpha_{0} + (1-\alpha_{0})\Phi_{it}},
+\end{equation}
+where $\Phi_{it} = \prod_{\tau=1}^t \phi_{i\tau} = exp\lbrace -\sum_{\tau=1}^t z_{if\tau}+\frac{t}{2} \rbrace$.
+
+\end{proof}
+
+\begin{proof}
+\textbf{Proposition \ref{prop:equil_no_referrals}.}\\
+Due to competition among firms, the wages of new employees working their first period in the firm are equal to the expected output: $w_{if1} = y_{if1}= d + c\alpha_{0}$, and the firm's profit is equal to zero: $\pi_{if1} = 0$. At the beginning of period $t$, the worker $i$ with the updated probability of being a good match $\alpha_{i,f,t-1}$ has the expected output equal to $\mathbb{E}[y_{ift}] = d+c\alpha_{i,f,t-1}$. Due to the linearity of the production function, the efficient job assignment is, therefore, the following. The worker $i$ and the firm $f$ renegotiate the worker's wage every period depending on her history and the refined probability of being a good match, $\alpha_{i,f,t-1} = P(\psi_{if}=1 \vert  Z_{i,f,t-1})$. The worker decides to stay in the firm $f$ if $\alpha_{ift-1} \geq \alpha_0$ and leaves the firm otherwise. The wage is determined according to the Nash bargaining solution:
+\begin{equation}\label{eq:prop1_bargaining}
+w_{ift} = \text{arg}\max_{x}(x-y_{if'1})(\mathbb{E}[y_{ift}]-x)
+\end{equation}
+Solving (\ref{eq:prop1_bargaining}), we find out that the wage of the worker in period $t$ is equal to $w_{ift} = d+\frac{c}{2}(\alpha_{i,f,t-1}+\alpha_0)$, and the profit of the firm is equal to $\pi_{ift} = \frac{c}{2}(\alpha_{i,f,t-1}-\alpha_0)$. 
+\end{proof}
+
+For simplicity of exposition, the proof of Lemma \ref{lemma:main} is presented before the proofs of Corollaries \ref{cor:wages_tenure_no_ref} and \ref{cor:leave_decrease_t}.
+
+\begin{proof}
+\textbf{Lemma \ref{lemma:main}.} 
+\begin{enumerate}[label={\roman*})]
+\item Note that $S_{it} \sim  \mathcal{N}(0,\,t)$. Therefore, the probability of event $S_{it} < \frac{t}{2}$ is equal to the probability of the event $S_{it}> -\frac{t}{2}$ for any $t$. Moreover, due to the continuity of the PDF of $S_{it}$ $P(S_{it} = \frac{t}{2}) = 0$, and thus we can rewrite (\ref{eq:X_t}) in the following way:
+\begin{equation}\label{eq:lemma_main_X_t_standard}
+X_{it} = \frac{P\left[ \cap_{n=1}^{t}(S_{in}\leq -\frac{n}{2}) \right] }
+{P\left[ \cap_{n=1}^{t}(S_{in}\leq \frac{n}{2}) \right] }
+\end{equation}
+Also, $\cap_{n=1}^{t}S_{in}\leq -\frac{n}{2}$ is a strict subset of $\cap_{n=1}^{t}S_{in}\leq \frac{n}{2}$. Provided that the probabilities in  the numerator and the denominator of $X_{it}$ are both non-zero, we obtain that $X_{it} \in \left(0,1\right)$.
+\item In order to prove that $X_{it}$ is decreasing in $t$, let us first show that the following inequality is true for any $t$:
+\begin{equation}\label{eq:lemma_main_X_t_no_intersection}
+\frac{P\left[S_{t+1}\leq-\frac{t+1}{2} \cap S_{t}\leq-\frac{t}{2} \right]}
+{P\left[S_{t+1}\leq \frac{t+1}{2} \cap S_{t}\leq \frac{t}{2} \right]} 
+< \frac{P\left[S_{t}\leq-\frac{t}{2} \right]}
+{P\left[S_{t}\leq \frac{t}{2} \right]}
+\end{equation}
+
+First, rewrite $S_{t+1}$ as $s+\varepsilon$, where $s = S_t \sim  \mathcal{N}(0,\,t)$ and $\varepsilon \sim  \mathcal{N}(0,\,1)$ are independently distributed. Thus, we can rewrite inequality (\ref{eq:lemma_main_X_t_no_intersection}) in the following way:
+\begin{equation}\label{eq:main_lemma_rhs_X_t_no_intersection}
+\frac{\int_{-\infty}^{-\frac{t}{2}}\int_{-\infty}^{-\frac{t+1}{2}-s}\phi_{s}(s)\phi(\varepsilon)d\varepsilon ds}
+{\int_{-\infty}^{\frac{t}{2}}\int_{-\infty}^{\frac{t+1}{2}-s}\phi_{s}(s)\phi(\varepsilon)d\varepsilon ds}
+<
+\frac{\int_{-\infty}^{-\frac{t}{2}}\phi_{s}(s)ds}
+{\int_{-\infty}^{\frac{t}{2}}\phi_{s}(s)ds}
+\end{equation}
+%=\frac{\int_{-\infty}^{-\frac{t}{2}}\phi_{s}(s) \left( \int_{\infty}^{-\frac{t+1}{2}-s}\phi(\varepsilon)d\varepsilon \right) ds}
+%{\int_{-\infty}^{\frac{t}{2}}\phi_{s}(s) \left( \int_{\infty}^{\frac{t+1}{2}-s}\phi(\varepsilon)d\varepsilon \right) ds}
+
+In (\ref{eq:main_lemma_rhs_X_t_no_intersection}) $\phi_s(s)$ and $\phi(\varepsilon)$ are PDFs of $S_t$ and $\varepsilon$ correspondingly. Let us once again use the symmetry of normal distribution and rewrite the numerator on the left-hand side of the inequality in the following form:
+\begin{equation}
+\int_{-\infty}^{-\frac{t}{2}}\int_{-\infty}^{-\frac{t+1}{2}-s}\phi_{s}(s)\phi(\varepsilon)d\varepsilon ds 
+= 
+\int_{-\infty}^{-\frac{t}{2}}\phi_{s}(s)ds - \int_{-\infty}^{-\frac{t}{2}}\int^{\infty}_{-\frac{t+1}{2}-s}\phi_{s}(s)\phi(\varepsilon)d\varepsilon ds
+\end{equation}
+Applying the same procedure for the denominator on the left-hand side, we can rewrite (\ref{eq:main_lemma_rhs_X_t_no_intersection}) as follows:
+\begin{equation}\label{eq:lemma_main_A_B_1}
+\frac{\int_{-\infty}^{-\frac{t}{2}}\phi_{s}(s)ds - A}
+{\int_{-\infty}^{\frac{t}{2}}\phi_{s}(s)ds - B}
+<
+\frac{\int_{-\infty}^{-\frac{t}{2}}\phi_{s}(s)ds}
+{\int_{-\infty}^{\frac{t}{2}}\phi_{s}(s)ds}, 
+\end{equation}
+where $A = \int_{-\infty}^{-\frac{t}{2}}\int^{\infty}_{-\frac{t+1}{2}-s}\phi_{s}(s)\phi(\varepsilon)d\varepsilon ds$ and $B = \int_{-\infty}^{\frac{t}{2}}\int^{\infty}_{\frac{t+1}{2}-s}\phi_{s}(s)\phi(\varepsilon)d\varepsilon ds$. In order to prove the inequality in (\ref{eq:main_lemma_rhs_X_t_no_intersection}), it is sufficient to show that $A-B > 0$. Notice that the integration domains of $A$ and $B$ partially overlap. Thus, we can get rid of this common part of both integrals and rewrite $A-B$ in the following form:
+\begin{equation}\label{eq:main_lemma_A_B}
+	\begin{aligned}
+A-B = \int_{-\infty}^{-\frac{t}{2}}\int^{\infty}_{-\frac{t+1}{2}-s}\phi_{s}(s)\phi(\varepsilon)d\varepsilon ds
+-
+\int_{-\infty}^{\frac{t}{2}}\int^{\infty}_{\frac{t+1}{2}-s}\phi_{s}(s)\phi(\varepsilon)d\varepsilon ds = \\
+=
+\int_{-\infty}^{-\frac{t}{2}}\int_{-\frac{t+1}{2}-s}^{\frac{t+1}{2}-s}\phi_{s}(s)\phi(\varepsilon)d\varepsilon ds
+-
+\int_{-\frac{t}{2}}^{\frac{t}{2}}\int^{\infty}_{\frac{t+1}{2}-s}\phi_{s}(s)\phi(\varepsilon)d\varepsilon ds
+	\end{aligned}
+\end{equation}
+Let us denote $C = \int_{-\frac{t}{2}}^{\frac{t}{2}}\int_{-\frac{t+1}{2}-s}^{0}\phi_{s}(s)\phi(\varepsilon)d\varepsilon ds$. We can rewrite $C$ in the following form:
+\begin{equation}\label{eq:main_lemma_C}
+C = \int_{-\frac{t}{2}}^{0}\int_{-\frac{t+1}{2}-s}^{0}\phi_{s}(s)\phi(\varepsilon)d\varepsilon ds 
++ 
+\int_{0}^{\frac{t}{2}}\int_{-\frac{t+1}{2}-s}^{0}\phi_{s}(s)\phi(\varepsilon)d\varepsilon ds 
+\end{equation}
+Note that due to the symmetry of $\phi(\varepsilon)$ and $\phi_s(s)$, we can express the second summand in (\ref{eq:main_lemma_C}) in the following form: $\int_{0}^{\frac{t}{2}}\int_{-\frac{t+1}{2}-s}^{0}\phi_{s}(s)\phi(\varepsilon)d\varepsilon ds = \int_{-\frac{t}{2}}^{0}\int_{0}^{\frac{t+1}{2}-s}\phi_{s}(s)\phi(\varepsilon)d\varepsilon ds$.
+
+Now, let us add and subtract $C$ from the expression in (\ref{eq:main_lemma_A_B}). Then, we can rewrite it as follows:
+\begin{equation}\label{eq:main_lemma_A_B_C}
+\begin{aligned}
+(A+C)-(B+C) = 
+\int_{-\infty}^{0}\int_{-\frac{t+1}{2}-s}^{\frac{t+1}{2}-s}\phi_{s}(s)\phi(\varepsilon)d\varepsilon ds
+-
+\int_{-\frac{t}{2}}^{\frac{t}{2}}\int_{-\infty}^{0}\phi_{s}(s)\phi(\varepsilon)d\varepsilon ds =\\
+=
+\frac{1}{2}\left(
+\int_{-\infty}^{\infty}\int_{-\frac{t+1}{2}-s}^{\frac{t+1}{2}-s}\phi_{s}(s)\phi(\varepsilon)d\varepsilon ds
+-
+\int_{-\frac{t}{2}}^{\frac{t}{2}}\phi_{s}(s)ds  
+\right)
+\end{aligned}
+\end{equation}
+
+Note that $\int_{-\infty}^{\infty}\int_{-\frac{t+1}{2}-s}^{\frac{t+1}{2}-s}\phi_{s}(s)\phi(\varepsilon)d\varepsilon ds = \int_{-\frac{t+1}{2}}^{\frac{t+1}{2}}\phi_{s'}(s')ds'$, where $s'= s+\varepsilon = S_{t+1}$. Thus, the expression in (\ref{eq:main_lemma_A_B_C}) is equivalent to:
+\begin{equation}
+(A+C)-(B+C) = F_{s'}\left(\frac{t+1}{2}\right)-F_{s'}\left(-\frac{t+1}{2}\right)-F_{s}\left(\frac{t}{2}\right)+F_{s}\left(-\frac{t}{2}\right),
+\end{equation}
+where $F_{s'}(\cdot)$ and $F_{s}(\cdot)$ are CDFs of $S_{t+1}$ and $S_t$ correspondingly. Using the fact, that $S_{t} \sim \mathcal{N}(0,\,t)$ we obtain that $F_{s'}\left(\frac{t+1}{2}\right)> F_{s}\left(\frac{t}{2}\right)$ and $F_{s'}\left(-\frac{t+1}{2}\right)< F_{s}\left(-\frac{t}{2}\right)$, which provides us with the required result of $A-B>0$. 
+%Note, that $A-B>0$ is sufficient but not necessary condition for (\ref{eq:lemma_main_A_B_1}) to hold. Instead, the necessary condition will be the following: $\frac{A}{B}>\frac{\int_{-\infty}^{-\frac{t}{2}}\psi_s(s)ds}{\int_{-\infty}^{\frac{t}{2}}\psi_s(s)ds} = \frac{C}{D}$. Thus, the necessary and sufficient condition for (\ref{eq:lemma_main_A_B_1}) to hold is to show, that $A-B > \frac{B}{D}(C-D)$. In addition, $D = \int_{-\infty}^{\frac{t}{2}}\psi_s(s)ds = B+\int_{-\infty}^{-\frac{t}{2}}\int_{-\infty}^{-\frac{t+1}{2}-s}\phi_{s}(s)\phi(\varepsilon)d\varepsilon ds $, which gives us $B<D$. Then, it is suffice to show that $A-B>C-D$.
+ 
+Now let us look at the general case. The difference $A-B$ for the general case is equal to:
+\begin{equation}\label{eq:lemma_main_general_statement}
+\begin{aligned}
+A - B = \int_{-\infty}^{-\frac{1}{2}} \cdot\cdot\cdot \int_{-\infty}^{-\frac{t}{2}-S_{t-1}}\int^{\infty}_{-\frac{t+1}{2}-S_{t}} \Pi_{n=1}^{t+1} \phi(\varepsilon_n) d\varepsilon_{t+1} \cdot \cdot \cdot d \varepsilon_{1} -\\
+-
+\int_{-\infty}^{\frac{1}{2}} \cdot\cdot\cdot \int_{-\infty}^{\frac{t}{2}-S_{t-1}}\int^{\infty}_{\frac{t+1}{2}-S_{t}} \Pi_{n=1}^{t+1} \phi(\varepsilon_n) d\varepsilon_{t+1} \cdot \cdot \cdot d \varepsilon_{1}
+\end{aligned}
+\end{equation} 
+
+%The difference $C-D$ for the general case is equal to:
+%\begin{equation}\label{eq:lemma_main_C_D}
+%\begin{aligned}
+%C - D = \int_{-\infty}^{-\frac{1}{2}} \cdot\cdot\cdot \int_{-\infty}^{-\frac{t}{2}-S_{t-1}} \Pi_{n=1}^{t} \phi(\varepsilon_n) d\varepsilon_{t} \cdot \cdot \cdot d \varepsilon_{1} -\\
+%-
+%\int_{-\infty}^{\frac{1}{2}} \cdot\cdot\cdot \int_{-\infty}^{\frac{t}{2}-S_{t-1}} \Pi_{n=1}^{t} \phi(\varepsilon_n) d\varepsilon_{t} \cdot \cdot \cdot d \varepsilon_{1}
+%\end{aligned}
+%\end{equation}
+
+Now, rearrange the expression $A-B$ for the general case from (\ref{eq:lemma_main_general_statement}) in the following way:
+
+\tiny
+\begin{equation}\label{eq:lemma_main_general_statement_2}
+\begin{aligned}
+A-B = 
+\int_{-\infty}^{\infty}\int_{-\infty}^{-1-S_1} \cdot\cdot\cdot \int_{-\infty}^{-\frac{t}{2}-S_{t-1}}\int^{\infty}_{-\frac{t+1}{2}-S_{t}} \Pi_{n=1}^{t+1} \phi(\varepsilon_n) d\varepsilon_{t+1} \cdot \cdot \cdot d \varepsilon_{1} -\\
+-
+\int_{-\infty}^{\infty}\int_{-\infty}^{1-S_1}  \cdot\cdot\cdot \int_{-\infty}^{\frac{t}{2}-S_{t-1}}\int^{\infty}_{\frac{t+1}{2}-S_{t}} \Pi_{n=1}^{t+1} \phi(\varepsilon_n) d\varepsilon_{t+1} \cdot \cdot \cdot d \varepsilon_{1}  +\\
++
+\left[
+\int_{-\infty}^{-\frac{1}{2}} \int^{\infty}_{-1-S_1}\cdot\cdot\cdot \int^{\infty}_{-\frac{t}{2}-S_{t-1}} \Pi_{n=1}^{t} \phi(\varepsilon_n) d\varepsilon_{t} \cdot \cdot \cdot d \varepsilon_{1}
+- 
+\int_{-\infty}^{\frac{1}{2}} \int^{\infty}_{1-S_1}\cdot\cdot\cdot \int^{\infty}_{\frac{t}{2}-S_{t-1}} \Pi_{n=1}^{t} \phi(\varepsilon_n) d\varepsilon_{t} \cdot \cdot \cdot d \varepsilon_{1} - \right] \\
+-
+\left( 
+\int_{-\infty}^{-\frac{1}{2}} \int^{\infty}_{-1-S_1}\cdot\cdot\cdot \int^{\infty}_{-\frac{t+1}{2}-S_{t}} \Pi_{n=1}^{t+1} \phi(\varepsilon_n) d\varepsilon_{t+1} \cdot \cdot \cdot d \varepsilon_{1}
+-
+\int_{-\infty}^{\frac{1}{2}} \int^{\infty}_{1-S_1}\cdot\cdot\cdot \int^{\infty}_{\frac{t+1}{2}-S_{t}} \Pi_{n=1}^{t+1} \phi(\varepsilon_n) d\varepsilon_{t+1} \cdot \cdot \cdot d \varepsilon_{1}
+\right)
+\end{aligned}
+\end{equation} 
+\normalsize
+
+Note that the expressions in the square and  round parenthesis are alike. The only difference is that the expression in square parenthesis is for $t$, while the last is for $t+1$. Note also that the first two summands constitute the expression $A-B$ for $t$. Iterating the decomposition of the first two summands will lead us to the following expression:
+
+\tiny
+\begin{equation}
+\begin{aligned}
+A-B = \int_{-\infty}^{-\frac{t}{2}}\int^{\infty}_{-\frac{t+1}{2}-S_t}\phi_{S_t}(S_t)\phi(\varepsilon_{t+1})d\varepsilon_{t+1} dS_t
+-
+\int_{-\infty}^{\frac{t}{2}}\int^{\infty}_{\frac{t+1}{2}-S_t}\phi_{S_{t}}(S_{t})\phi(\varepsilon_{t+1})d\varepsilon_{t+1} dS_{t} 
+\\
++\int_{-\infty}^{-\frac{t-1}{2}}\int^{\infty}_{-\frac{t}{2}-S_{t-1}}\phi_{S_{t-1}}(S_{t-1})\phi(\varepsilon_{t})d\varepsilon_{t} dS_{t-1}
+-
+\int_{-\infty}^{\frac{t-1}{2}}\int^{\infty}_{\frac{t}{2}-S_{t-1}}\phi_{S_{t-1}}(S_{t-1})\phi(\varepsilon_{t})d\varepsilon_{t} dS_{t-1}-
+\\
+\cdot\\
+ \cdot\\
+  \cdot\\
++
+\left[
+\int_{-\infty}^{-\frac{1}{2}} \int^{\infty}_{-1-S_1}\cdot\cdot\cdot \int^{\infty}_{-\frac{t}{2}-S_{t-1}} \Pi_{n=1}^{t} \phi(\varepsilon_n) d\varepsilon_{t} \cdot \cdot \cdot d \varepsilon_{1}
+-
+ \int_{-\infty}^{\frac{1}{2}} \int^{\infty}_{1-S_1}\cdot\cdot\cdot \int^{\infty}_{\frac{t}{2}-S_{t-1}} \Pi_{n=1}^{t} \phi(\varepsilon_n) d\varepsilon_{t} \cdot \cdot \cdot d \varepsilon_{1} - \right] \\
+-
+\left( 
+\int_{-\infty}^{-\frac{1}{2}} \int^{\infty}_{-1-S_1}\cdot\cdot\cdot \int^{\infty}_{-\frac{t+1}{2}-S_{t}} \Pi_{n=1}^{t+1} \phi(\varepsilon_n) d\varepsilon_{t+1} \cdot \cdot \cdot d \varepsilon_{1}
+-
+\int_{-\infty}^{\frac{1}{2}} \int^{\infty}_{1-S_1}\cdot\cdot\cdot \int^{\infty}_{\frac{t+1}{2}-S_{t}} \Pi_{n=1}^{t+1} \phi(\varepsilon_n) d\varepsilon_{t+1} \cdot \cdot \cdot d \varepsilon_{1}
+\right)
+\end{aligned}
+\end{equation}
+\normalsize
+
+
+
+
+\item Convergence to zero follows immediately from $A-B>0$ for all $t$, ensuring that the numerator decreases faster than the denominator.
+ %By applying De Morgan's law to the denominator in (\ref{eq:X_t}) we can rewrite $X_{it}$ as follows:
+%\begin{equation}\label{eq:X_t_de_morgan}
+%X_{it} = 
+%\frac{1- P\left[(S_{i1}<\frac{1}{2}) \cup ... \cup (S_{it}< \frac{t}{2})\right]}
+%{P\left[(S_{i1} \geq -\frac{1}{2}) \cap ... \cap (S_{it}\geq -\frac{t}{2})\right] }
+%\end{equation}
+%Note, that $S_{it} \sim  \mathcal{N}(0,\,t)$. Therefore, the probability of event $S_{it} < \frac{t}{2}$ is equal to the probability of the event $S_{it}> -\frac{t}{2}$ for any $t$. Moreover, due to the continuity of the PDF of $S_{it}$ $P(S_{it} = \frac{t}{2}) = 0$, and thus we can rewrite (\ref{eq:X_t_de_morgan}) in the following way:
+%\begin{equation}\label{eq:X_t_inter_union}
+%X_{it} = 
+%\frac{1- P\left[(S_{i1} \geq -\frac{1}{2}) \cup ... \cup (S_{it}\geq -\frac{t}{2})\right]}
+%{P\left[(S_{i1} \geq -\frac{1}{2}) \cap ... \cap (S_{it}\geq -\frac{t}{2})\right] }
+%\end{equation}
+
+%$$
+%P(\cap_{n=1}^{t} S_t \leq \frac{1}{2}) = \int_{-\infty}^{\frac{1}{2}}\int_{-\infty}^{1-\varepsilon_1}\cdot \cdot \cdot \int_{-\infty}^{\frac{n}{2}-S_{t-1}} \Pi_{n=1}^{t=1}\phi(\varepsilon_n)d\varepsilon_t \cdot \cdot \cdot d\varepsilon_1
+%$$
+%The numerator in (\ref{eq:X_t_inter_union}) is decreasing in $t$ because for any $t$ the following inequality holds true\footnote{The inequality is strict due to the fact that $P[(\cap_{\tau=1}^{t-1} (S_{i\tau} \geq \frac{\tau}{2}))\cap (S_{it}<\frac{t}{2})]>0$.}: $P[\cap_{\tau=1}^t (S_{i\tau} \geq \frac{\tau}{2})] < P[\cap_{\tau=1}^{t-1} (S_{i\tau} \geq \frac{\tau}{2})]$. At the same time the denominator is non-decreasing in $t$:  $P[\cup_{\tau=1}^t (S_{i\tau} \geq \frac{\tau}{2})] \geq P[\cup_{\tau=1}^{t-1} (S_{i\tau} \geq \frac{\tau}{2})]$. Hence, $X_{it} < X_{i \, t-1}$ $\forall$ $t$.
+
+%First, let's notice that the following inequality is true for any $t$:
+%\begin{equation}\label{eq:lemma_main_general_intermediary}
+%\begin{aligned}
+%\int_{-\infty}^{-\frac{1}{2}} \cdot\cdot\cdot \int^{\infty}_{-\frac{t}{2}-S_{t-1}}\int^{\infty}_{-\frac{t+1}{2}-S_{t}} \Pi_{n=1}^{t+1} \phi(\varepsilon_n) d\varepsilon_{t+1} \cdot \cdot \cdot d \varepsilon_{1}>\\
+%>
+%\int_{-\infty}^{\frac{1}{2}} \cdot\cdot\cdot \int^{\infty}_{\frac{t}{2}-S_{t-1}}\int^{\infty}_{\frac{t+1}{2}-S_{t}} \Pi_{n=1}^{t+1} \phi(\varepsilon_n) d\varepsilon_{t+1} \cdot \cdot \cdot d \varepsilon_{1}
+%\end{aligned}
+%\end{equation} 
+%It can be proved by induction using the fact that the difference from (\ref{eq:main_lemma_A_B}) is positive. Indeed, we showed that $\int_{-\infty}^{-\frac{t-1}{2}}\int^{\infty}_{-\frac{t}{2}-s}\phi_{s}(s)\phi(\varepsilon)d\varepsilon ds
+%>
+%\int_{-\infty}^{\frac{t-1}{2}}\int^{\infty}_{\frac{t}{2}-s}\phi_{s}(s)\phi(\varepsilon)d\varepsilon ds$. Thus, due to the fact that $F_{S_t}(\frac{t+1}{2})>F_{S_t}(-\frac{t+1}{2})$ it is also true that:
+%\begin{equation}
+%\begin{aligned}
+%\int_{-\infty}^{-\frac{t-1}{2}}\int^{\infty}_{-\frac{t}{2}-s}\int^{\infty}_{-\frac{t+1}{2}-s-\varepsilon_1}\phi_{s}(s)\phi(\varepsilon_1)\phi(\varepsilon_2)d\varepsilon_2 d\varepsilon_1 ds >\\
+%>
+%\int_{-\infty}^{\frac{t-1}{2}}\int^{\infty}_{\frac{t}{2}-s}\int^{\infty}_{\frac{t+1}{2}-s-\varepsilon_1}\phi_{s}(s)\phi(\varepsilon_1)\phi(\varepsilon_2)d\varepsilon_2 d\varepsilon_1 ds
+%\end{aligned}
+%\end{equation}
+%Iterating with $t$ we can obtain the expression in (\ref{eq:lemma_main_general_intermediary}).
+
+
+%Notice, that 
+
+%After applying the inequality in (\ref{eq:lemma_main_general_intermediary}) for the first summand in the parenthesis in (\ref{eq:lemma_main_general_statement_2}), we can show that:
+%\begin{equation}
+%\begin{aligned}
+%A-B > \int_{-\infty}^{-\frac{1}{2}} \int^{\infty}_{-1-S_1}\cdot\cdot\cdot \int^{\infty}_{-\frac{t}{2}-S_{t-1}} \Pi_{n=1}^{t} \phi(\varepsilon_n) d\varepsilon_{t} \cdot \cdot \cdot d \varepsilon_{1}-\\
+%-
+%\int_{-\infty}^{1} \cdot\cdot\cdot \int_{-\infty}^{\frac{t}{2}-S_{t-1}}\int^{\infty}_{\frac{t+1}{2}-S_{t}} \Pi_{n=3}^{t+1} \phi(\varepsilon_n)\phi(S_2) d\varepsilon_{t+1} \cdot \cdot \cdot d \varepsilon_{3} d S_2, \\ 
+%\end{aligned}
+%\end{equation}
+%which appears to be positive after simplifying and using the facts that $S_{t} \sim \mathcal{N}(0,\,t)$ and  $F_{S_{t+1}}\left(\frac{t+1}{2}\right)> F_{S_t}\left(\frac{t}{2}\right)$.
+\end{enumerate}
+\end{proof}
+
+\begin{proof}
+\textbf{Corollary \ref{cor:wages_tenure_no_ref}.}\\
+From Proposition \ref{prop:equil_no_referrals}, we obtain the expression for the wage of the worker $i$ in the firm $f$ for period $t$: $w_{ift} = d+\frac{c}{2}(\alpha_{i,f,t-1}+\alpha_0)$. This value of $w_{ift}$ is determined by $\alpha_{i,f,t-1}$ for the working history of the worker $i$ in the firm $f$ up to period $t$: $Z_{i,f,t-1} = \lbrace z_{if1}, ... , z_{i,f,t-1} \rbrace$. In Corollary \ref{cor:wages_tenure_no_ref}, however, we consider not the realization of $\alpha_{i,f,t-1}$, but the expected value of $\alpha_{i,f,t-1}$ conditional on the set of the events that the worker $i$ stayed in the firm $f$ in all periods from $1$ to $t-1$. 
+
+The "worker $i$ stayed in the firm $f$ in period $t$" event can be expressed as the inequality $\alpha_{ift} \geq \alpha_0$. From (\ref{eq:alpha_it}), it is easy to see that it is equivalent to the following inequality:
+\begin{equation}
+\alpha_{ift} \geq \alpha_0 \Leftrightarrow \sum_{\tau=1}^t z_{ift} \geq \frac{t}{2}
+\end{equation}
+Thus, the probability that the worker $i$ is a good match conditional on her staying in the firm up to period $t$ (including period t) can be expressed as $\bar{\alpha}_{ift}= P[\psi_{if}=1 \vert z_{if1}\geq \frac{1}{2},...,\sum_{\tau=1}^{t}z_{if \tau}\geq \frac{t}{2}]$. After applying Bayes' theorem and using the expression in (\ref{eq:X_t}), we can rewrite $\bar{\alpha}_{ift}$ in the following form:
+\begin{equation}\label{eq:cor1_alpha_tilde}
+\bar{\alpha}_{ift} = \frac{\alpha_0}{\alpha_0 + (1-\alpha_0)X_{it}}
+\end{equation}
+By Lemma \ref{lemma:main}, $X_{it}$ is decreasing in $t$. Hence, $\bar{\alpha}_{ift}$ is increasing in $t$.
+\end{proof}
+
+\begin{proof}
+\textbf{Corollary \ref{cor:leave_decrease_t}.}
+\end{proof}
+
+%\begin{proof}
+%\textbf{Lemma \ref{lemma:alpha_job_referral}.}
+%\end{proof}
+
+\begin{proof}
+\textbf{Proposition \ref{prop:equil_emp_referrals}.}\\
+Due to competition among firms and the assumption that a job candidate can be referred only once when entering the labor market, the outside option for any worker is equal to her expected output when no referral occurs: $w_{if1} = y_{if1}= d + c\alpha_{0}$, and the firm's profit is equal to zero: $\pi_{if1} = 0$. At the beginning of her career, the  worker $i$ referred by the current employee $j$ with working history $Z_{jfs}$ has the probability of being a good match equal to $\alpha_{i0}^{js}\geq \alpha_0$. This probability is the same for the firm $f$ and the worker $i$ because of the employee referral. 
+At the beginning of every period $t$, the worker $i$ and the firm $f$ renegotiate the worker's wage depending on the worker's $i$ history $Z_{i\, f \, t-1}$ and worker's $j$ history $Z_{j\, f \, s+t-1}$. The worker's $i$ probability of being a good match at period $t$ equals $\alpha_{i\, f \, t-1}^{j\, f \, s+t-1}$, and her expected output in period $t$ equals $\mathbb{E}[y_{ift}] = d+c\alpha_{i,t-1}^{j\,s+t-1}$. The worker decides to stay in the firm $f$ if $\alpha_{i,t-1}^{j\,s+t-1} \geq \alpha_0$ and leaves the firm otherwise. The wage is determined according to the Nash bargaining solution:
+\begin{equation}\label{eq:prop2_bargaining}
+w_{ift} = \text{arg}\max_{x}(x-y_{if'1})(\mathbb{E}[y_{ift}]-x)
+\end{equation}
+Solving (\ref{eq:prop2_bargaining}), we find the wage of the worker in period $t$ is equal to $w_{ift} = d+\frac{c}{2}(\alpha_{i,t-1}^{j\,s+t-1}+\alpha_0)$, and the profit of the firm is equal to $\pi_{ift} = \frac{c}{2}(\alpha_{i,t-1}^{j\,s+t-1}-\alpha_0)$. 
+\end{proof}
+
+\begin{proof}
+\textbf{Corollary \ref{cor:emp_ref_wage_converge}.}\\
+Note first that $\bar{w}_{it} = \mathbb{E}[w_{it}\vert \cap_{n=1}^{s}\sum_{\tau = 1}^{n}z_{jf\tau}\geq \frac{n}{2}, \cap_{n=1}^{t-1} (\sum_{\tau = 1}^{n} z_{if\tau}\geq \frac{n}{2})] = d+\frac{c}{2}\alpha_0+\frac{c}{2}\bar{\alpha}_{i\,t-1}^{js}$, where $\bar{\alpha}_{i\,t-1}^{js}$ is the probability that the worker $i$ is a good match conditional on being referred by the worker $j$ with tenure $s$ at the moment of the referral, together with her tenure in the firm for $t-1$ periods. $\bar{\alpha}_{i\,t-1}^{js}$ is equal to $P[\psi=1 \vert \cap_{n=1}^{s}\sum_{\tau = 1}^{n}z_{jf\tau}\geq \frac{n}{2}, \cap_{n=1}^{t-1}\sum_{\tau = 1}^{n}z_{if\tau}\geq \frac{n}{2}]$. The probability that the worker $i$ is a good match is conditioned on her tenure $t-1$ and the tenure of the referring employee $j$. However, the tenure of the referring employee $j$ is taken only up to the moment of referral $s$. It happens because the employee $j$ does not necessarily stay in the firm after making the referral, so we cannot impose any restrictions on the value of her output from the moment of the referral.
+
+Using expressions in (\ref{eq:alpha_i0_js}), (\ref{eq:alpha_it_js+t}), and (\ref{eq:cor1_alpha_tilde}), we can rewrite $\bar{\alpha}_{i\,t-1}^{js}$ in the following way:
+\begin{equation}\label{eq:cor_3_1}
+\bar{\alpha}_{i\,t-1}^{js}= \frac{\bar{\alpha}_{i0}^{js}}{\bar{\alpha}_{i0}^{js} + (1-\bar{\alpha}_{i0}^{js})X_{i\, t-1}},
+\end{equation}
+where $\bar{\alpha}_{i0}^{js} = \alpha_0 + \lambda \frac{1-X_{js}}{\alpha_0+(1-\alpha_0)X_{js}}$.
+
+Following the same procedure, we can rewrite the expected wage of the non-referred worker $\bar{w}_{i'ft}$ in a similar way:
+\begin{equation}
+\bar{w}_{i'ft} = d+\frac{c}{2}\alpha_0+\frac{c}{2}\bar{\alpha}_{i'\,t-1},
+\end{equation}
+where $\bar{\alpha}_{i'\,t-1} = \frac{\bar{\alpha}_{0}}{\bar{\alpha}_{0} + (1-\bar{\alpha}_{0})X_{i'\, t-1}}$. 
+Now we can prove two statements of the Corollary:
+\begin{enumerate}[label={\roman*})]
+\item The difference between the wages of referred and non-referred workers with similar tenure is equal to $w_{ift}-w_{i'ft} = \frac{c}{2}(\bar{\alpha}_{i\,t-1}^{js}-\bar{\alpha}_{i'\,t-1})$, which is positive for any $t$. Indeed, $\bar{\alpha}_{i\,t-1}^{js}$ is increasing in $\bar{\alpha}_{0}^{js}$. In its turn, $\bar{\alpha}_{0}^{js}>\alpha_0$ because $0 \leq X_{js}\leq 1$ due to Lemma \ref{lemma:main}.
+\item By Lemma \ref{lemma:main} $X_{it} \rightarrow 0$ as $t \rightarrow \infty$. Thus, both $\bar{\alpha}_{i\,t-1}^{js}$and $\bar{\alpha}_{i'\,t-1}$ are converging to 1 as $t \rightarrow \infty$. Therefore, the wage difference converges to zero as tenure increases.
+\end{enumerate}
+\end{proof}
+
+\begin{proof}
+\textbf{Corollary \ref{cor:emp_ref_tenure_worker}.}\\
+First, consider the probability of the worker $i$ to stay in the firm $f$ in period $t$ conditional on her staying in the firm for $t-1$ periods and being referred by the employee with tenure $s$ at the moment of referrals: $P_{it} = P[\sum_{\tau = 1}^{t} z_{if\tau}\geq \frac{t}{2} \vert \cap_{n=1}^{t-1} (\sum_{\tau = 1}^{n} z_{if\tau}\geq \frac{n}{2}),\cap_{n=1}^{s} (\sum_{\tau = 1}^{n} z_{jf\tau}\geq \frac{n}{2})]$. Using the notation from Lemma \ref{lemma:main} and the formula for conditional probability, we can rewrite it in the following way:
+\begin{equation}
+P_{it} = \frac{\bar{\alpha}_{i0}^{js} P[\cap_{n=1}^{t}(S_{in} \geq -\frac{n}{2})]+ (1-\bar{\alpha}_{i0}^{js}) P[\cap_{n=1}^{t}(S_{in} \geq \frac{n}{2})] }{\bar{\alpha}_{i0}^{js} P[\cap_{n=1}^{t-1}(S_{in} \geq -\frac{n}{2})]+ (1-\bar{\alpha}_{i0}^{js}) P(\cap_{n=1}^{t-1}(S_{in} \geq \frac{n}{2})]},
+\end{equation}
+where $\bar{\alpha}_{i0}^{js}= P[\psi_{if}=1 \vert \cap_{n=1}^{s} (\sum_{\tau = 1}^{n} z_{jf\tau}\geq \frac{n}{2})]$. After further simplification, the probability of the referred worker $P_{it}$ is equal to:
+\begin{equation}\label{eq:cor_4_P_it}
+P_{it} = P \left[ S_{it} \geq -\frac{t}{2} \vert \cap_{n=1}^{t-1}(S_{in} \geq -\frac{n}{2})\right]
+\frac{\bar{\alpha}_{i0}^{js}+(1-\bar{\alpha}_{i0}^{js})X_{it}}{\bar{\alpha}_{i0}^{js}+(1-\bar{\alpha}_{i0}^{js})X_{i\,t-1}}
+\end{equation}
+The probability of the non-referred worker $P_{i't}$ is equal to:
+\begin{equation}\label{eq:cor_4_P_i't}
+P_{i't} = P \left[ S_{i't} \geq -\frac{t}{2} \vert \cap_{n=1}^{t-1}(S_{i'n} \geq -\frac{n}{2})\right]
+\frac{\alpha_0+(1-\alpha_0)X_{i't}}{\alpha_0+(1-\alpha_0)X_{i'\,t-1}}
+\end{equation}
+Now we can prove the statements of Corollary \ref{cor:emp_ref_tenure_worker}:
+\begin{enumerate}[label={\roman*})]
+\item Note that $\frac{\alpha+(1-\alpha)X_{it}}{\alpha+(1-\alpha)X_{it-1}}$ is increasing in $\alpha$ because $X_{it}\leq X_{it-1}$ by Lemma \ref{lemma:main}. Thus, $P_{it}-P_{i't}\geq 0$.
+\item Also, $\frac{\alpha+(1-\alpha)X_{it}}{\alpha+(1-\alpha)X_{it-1}}$ is converging to $1$ as $t\rightarrow \infty$ for any $\alpha$ because $X_{it} \rightarrow 0$ by Lemma \ref{lemma:main}. Thus, $P_{it}-P_{i't} \rightarrow 0$  as $t \rightarrow 1$. 
+
+\end{enumerate}
+\end{proof}
+
+\begin{proof}
+\textbf{Corollary \ref{cor:emp_ref_wage_employee}.}\\
+The expected wage of the referred worker $i$ conditional on her staying in the firm for $t-1$ periods and being referred by the current employee $j$ with tenure $s$ at the moment of the referral is equal to:
+\begin{equation}
+\bar{w}_{it} = d+\frac{c}{2}\left(\alpha_0+\bar{\alpha}_{i\,t-1}^{js}\right)
+\end{equation}
+From (\ref{eq:cor_3_1}), it is easy to see that $\bar{\alpha}_{i\,t-1}^{js}$ is increasing in $\alpha_{i\,0}^{js}$, which is decreasing in $X_{js}$. $X_{js}$ is decreasing in $s$ by Lemma \ref{lemma:main}. Thus, the expected wage of the referred worker $\bar{w}_{it}$ is increasing in the tenure of the referring employee, $s$.
+\end{proof}
+
+\begin{proof}
+\textbf{Corollary \ref{cor:emp_ref_tenure_referee}.}\\
+The probability of the worker $i$ to stay in the firm in period $t$ conditional on her staying in the firm for $t-1$ periods and being referred by the current employee with tenure $s$ at the moment of the referral is denoted as $P_{it}$ and presented in (\ref{eq:cor_4_P_it}). In the proof of Corollary \ref{cor:emp_ref_tenure_worker}, we established that $\frac{\alpha+(1-\alpha)X_{it}}{\alpha+(1-\alpha)X_{it-1}}$ is increasing in $\alpha$ because $X_{it}\leq X_{it-1}$ by Lemma \ref{lemma:main}. Thus, $P_{it}$ is increasing in tenure of the current employee $s$ as $\bar{\alpha}_{i\,0}^{js}$ is increasing in $s$.
+\end{proof}
+
+\pagebreak
+
+\end{document}
